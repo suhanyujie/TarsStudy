@@ -158,3 +158,6 @@ make tarslog-tar
 make tarsquerystat-tar
 make tarsqueryproperty-tar
 
+# 关闭防火墙
+systemctl disable firewalld
+
