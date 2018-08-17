@@ -14,6 +14,7 @@ JavaPackageName="jdk-8u171-linux-x64.tar.gz"
 
 # 普通用户声明
 NormalUserName="cloud-user"
+MysqlPassword="root@appinside"
 
 # 开始执行命令
 setenforce 0   
@@ -85,8 +86,8 @@ echo "export PATH" >> /etc/profile
 source /etc/profile
 
 cd /usr/local/mysql/
-./bin/mysqladmin -u root password 'root@appinside'
-./bin/mysqladmin -u root -h ${MachineIp} password 'root@appinside'
+./bin/mysqladmin -u root password \"${MysqlPassword}\"
+./bin/mysqladmin -u root -h ${MachineIp} password \"${MysqlPassword}\"
 cd -
 echo "/usr/local/mysql/lib/" >> /etc/ld.so.conf
 ldconfig
@@ -125,15 +126,26 @@ mkdir tars
 chown ${NormalUserName}:${NormalUserName} ./tars/
 
 # tars数据环境初始化
-mysql -uroot -proot@appinside -e "grant all on *.* to 'tars'@'%' identified by 'root@appinside' with grant option;"
-mysql -uroot -proot@appinside -e "grant all on *.* to 'tars'@'localhost' identified by 'root@appinside' with grant option;"
-mysql -uroot -proot@appinside -e "grant all on *.* to 'tars'@'${MachineIp}' identified by 'root@appinside' with grant option;"
-mysql -uroot -proot@appinside -e "flush privileges;"
+mysql -uroot -p${MysqlPassword} -e "grant all on *.* to 'tars'@'%' identified by '${MysqlPassword}' with grant option;"
+mysql -uroot -p${MysqlPassword} -e "grant all on *.* to 'tars'@'localhost' identified by '${MysqlPassword}' with grant option;"
+mysql -uroot -p${MysqlPassword} -e "grant all on *.* to 'tars'@'${MachineIp}' identified by '${MysqlPassword}' with grant option;"
+mysql -uroot -p${MysqlPassword} -e "flush privileges;"
 
 # 创建数据库
 cd $SoftwarePathRelease/tars-master/cpp/framework/sql
 sed -i "s/192.168.2.131/${MachineIp}/g" `grep 192.168.2.131 -rl ./*`;
 sed -i "s/db.tars.com/${MachineIp}/g" `grep db.tars.com -rl ./*`;
+
+sed -i "s/192.168.2.131/${MachineIp}/g" `grep 192.168.2.131 -rl ./*`;
+sed -i "s/db.tars.com/${MachineIp}/g" `grep db.tars.com -rl ./*`;
+sed -i "s/registry.tars.com/${MachineIp}/g" `grep registry.tars.com -rl ./*`;
+sed -i "s/web.tars.com/${MachineIp}/g" `grep web.tars.com -rl ./*`;
+sed -i "s/tars2015/${MysqlPassword}/g" `grep tars2015 -rl ./*`;
+
+sed -i "s/tars2015/${MysqlPassword}/g" `grep tars2015 -rl ./*`;
+sed -i "s/registry1.tars.com/${MachineIp}/g" `grep registry1.tars.com -rl ./*` ./src/main/resources/tars.conf\`;
+sed -i "s/registry2.tars.com/${MachineIp}/g" `grep registry2.tars.com -rl ./*` ./src/main/resources/tars.conf\`;
+
 chmod u+x exec-sql.sh
 ./exec-sql.sh
 
