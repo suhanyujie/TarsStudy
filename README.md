@@ -1,6 +1,10 @@
 # TarsStudy
 * tars微服务框架学习
 
+## 安装步骤
+* 在下方的"软件包下载"中，将软件包下载好，放入linux系统的文件中
+
+
 ## 软件包下载
 * 链接地址： `https://pan.baidu.com/s/1AKRnRAF0_pfJULJDUxgQag` 密码:`rlav`
 * 放入linux的 `/root/tarsInstall` 下
