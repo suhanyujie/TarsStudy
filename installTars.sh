@@ -161,3 +161,4 @@ make tarsqueryproperty-tar
 # 关闭防火墙
 systemctl disable firewalld
 
+echo "完成！"

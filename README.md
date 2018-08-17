@@ -16,7 +16,10 @@
 * 临时关闭selinux  `setenforce 0`
 * 永久关闭selinux：
 * `vi /etc/selinux/config`
-* 修改为：`SELINUX=disabled`
+* 修改为：`SELINUX=disabled`  参考 https://blog.csdn.net/jichl/article/details/20711119
+
+### 重启
+
 
 ## 参考资料
 * 参考官方的安装shell https://github.com/Tencent/Tars/blob/phptars/build/install.sh
