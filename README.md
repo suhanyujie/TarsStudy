@@ -9,6 +9,15 @@
 * 链接地址： `https://pan.baidu.com/s/1AKRnRAF0_pfJULJDUxgQag` 密码:`rlav`
 * 放入linux的 `/root/tarsInstall` 下
 
+## 其他
+
+### 关闭防火墙
+* 永久关闭firewalld `systemctl disable firewalld:`
+* 临时关闭selinux  `setenforce 0`
+* 永久关闭selinux：
+* `vi /etc/selinux/config`
+* 修改为：`SELINUX=disabled`
+
 ## 参考资料
 * 参考官方的安装shell https://github.com/Tencent/Tars/blob/phptars/build/install.sh
 * 官方的安装指南 https://github.com/Tencent/Tars/blob/phptars/build/install.sh
