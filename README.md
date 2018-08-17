@@ -8,4 +8,5 @@ tars微服务框架学习
 ## 参考资料
 >
 * 参考官方的安装shell https://github.com/Tencent/Tars/blob/phptars/build/install.sh
+* 官方的安装指南 https://github.com/Tencent/Tars/blob/phptars/build/install.sh
 * 在同事{*俊东+*发军}的指导下进行安装 https://github.com/jackylee92/Blog/blob/master/Tars.md
